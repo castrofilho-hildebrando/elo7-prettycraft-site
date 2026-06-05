@@ -8,775 +8,772 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-        --bg:                    #faf8f0;
-        --bg-card:         #ffffff;
-        --bg-sidebar:    #fffff8;
-        --accent:            #b5956a;
-        --accent-soft: #f0e8d8;
-        --accent-pale: #faf4ec;
-        --text-main:     #2e2a22;
-        --text-mid:        #6b6355;
-        --text-light:    #a89d8e;
-        --border:            #e2dace;
-        --border-card: #ede8de;
-        --rose-soft:     #f5ece8;
-        --rose-mid:        #e8cfc6;
-        --sage-soft:     #eaf0e8;
-        --sage-mid:        #c8d9c4;
-        --lavender:        #ece8f4;
-        --lavender-mid:#c8c0dc;
-        --radius:            4px;
-        --font-title:    'Cormorant Garamond', Georgia, serif;
-        --font-body:     'DM Sans', system-ui, sans-serif;
-        --sidebar-w:     220px;
-    }
-
-    body {
-        font-family: var(--font-body);
-        background: var(--bg);
-        color: var(--text-main);
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
-
-    /* ── HEADER ── */
-    header {
-        height: 62px;
-        background: var(--bg-card);
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        padding: 0 28px;
-        flex-shrink: 0;
-        gap: 12px;
-    }
-
-    .header-monogram {
-        width: 34px; height: 34px;
-        border-radius: var(--radius);
-        background: var(--accent);
-        display: flex; align-items: center; justify-content: center;
-        font-family: var(--font-title);
-        font-size: 16px; font-weight: 600;
-        color: #fff;
-        letter-spacing: 0.02em;
-        flex-shrink: 0;
-    }
-
-    .header-title {
-        font-family: var(--font-title);
-        font-size: 22px;
-        font-weight: 500;
-        color: var(--text-main);
-        letter-spacing: 0.01em;
-    }
-
-    .header-title span {
-        color: var(--accent);
-        font-style: italic;
-    }
-
-    .header-sub {
-        font-size: 12px;
-        font-weight: 300;
-        color: var(--text-light);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        margin-left: 4px;
-        align-self: flex-end;
-        padding-bottom: 3px;
-    }
-
-    /* ── LAYOUT ── */
-    .layout {
-        display: flex;
-        flex: 1;
-        overflow: hidden;
-    }
-
-    /* ── SIDEBAR ── */
-    aside {
-        width: var(--sidebar-w);
-        flex-shrink: 0;
-        background: var(--bg-sidebar);
-        border-right: 4px solid var(--border);
-        display: flex;
-        flex-direction: column;
-        padding: 24px 0;
-    }
-
-    .sidebar-label {
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--text-light);
-        padding: 0 20px 12px;
-    }
-
-    .nav-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-left: 3px solid transparent;
-        transition: background 0.15s, border-color 0.15s;
-        font-size: 14px;
-        font-weight: 400;
-        color: var(--text-mid);
-        user-select: none;
-    }
-
-    .nav-item:hover {
-        background: var(--accent-pale);
-        color: var(--text-main);
-    }
-
-    .nav-item.active {
-        background: var(--accent-soft);
-        border-left-color: var(--accent);
-        color: var(--text-main);
-        font-weight: 500;
-    }
-
-    .nav-icon {
-        width: 28px; height: 28px;
-        border-radius: var(--radius);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 15px;
-        flex-shrink: 0;
-    }
-
-    .nav-item.active .nav-icon,
-    .nav-item:hover .nav-icon {
-        background: var(--bg-card);
-    }
-
-    .nav-count {
-        margin-left: auto;
-        font-size: 11px;
-        font-weight: 500;
-        background: var(--accent-soft);
-        color: var(--accent);
-        border-radius: 10px;
-        padding: 1px 7px;
-    }
-
-    .sidebar-divider {
-        height: 1px;
-        background: var(--border);
-        margin: 16px 20px;
-    }
-
-    .sidebar-footer {
-        margin-top: auto;
-        padding: 16px 20px 0;
-        font-size: 11px;
-        color: var(--text-light);
-        line-height: 1.6;
-    }
-
-    /* ── MAIN ── */
-    main {
-        flex: 1;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding: 28px 32px;
-        scrollbar-width: thin;
-        scrollbar-color: var(--border) transparent;
-    }
-
-    main::-webkit-scrollbar { width: 6px; }
-    main::-webkit-scrollbar-track { background: transparent; }
-    main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-    .section-header {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-        margin-bottom: 22px;
-        padding-bottom: 14px;
-        border-bottom: 1px solid var(--border-card);
-    }
-
-    .section-title {
-        font-family: var(--font-title);
-        font-size: 28px;
-        font-weight: 500;
-        color: var(--text-main);
-        letter-spacing: 0.01em;
-    }
-
-    .section-count {
-        font-size: 13px;
-        color: var(--text-light);
-        font-weight: 300;
-    }
-
-    /* ── EMPTY / LOADING ── */
-    .placeholder {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 320px;
-        color: var(--text-light);
-        gap: 12px;
-        text-align: center;
-    }
-
-    .placeholder-icon {
-        font-size: 40px;
-        opacity: 0.4;
-    }
-
-    .placeholder p {
-        font-size: 14px;
-        font-weight: 300;
-    }
-
-    /* ── CLIENTE CARD ── */
-    .clientes-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .cliente-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-card);
-        border-radius: var(--radius);
-        padding: 18px 20px;
-        transition: border-color 0.15s, box-shadow 0.15s;
-    }
-
-    .cliente-card:hover {
-        border-color: var(--accent);
-        box-shadow: 0 2px 12px rgba(181,149,106,0.08);
-    }
-
-    .cliente-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 14px;
-    }
-
-    .cliente-avatar {
-        width: 38px; height: 38px;
-        border-radius: 50%;
-        background: var(--lavender);
-        border: 1px solid var(--lavender-mid);
-        display: flex; align-items: center; justify-content: center;
-        font-family: var(--font-title);
-        font-size: 14px; font-weight: 600;
-        color: #5a5080;
-        flex-shrink: 0;
-    }
-
-    .cliente-name {
-        font-family: var(--font-title);
-        font-size: 17px;
-        font-weight: 500;
-        color: var(--text-main);
-    }
-
-    .cliente-city {
-        font-size: 12px;
-        font-weight: 300;
-        color: var(--text-light);
-        margin-top: 1px;
-    }
-
-    .cliente-fields {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 8px;
-    }
-
-    .field-box {
-        background: var(--bg);
-        border: 1px solid var(--border-card);
-        border-radius: var(--radius);
-        padding: 7px 10px;
-    }
-
-    .field-label {
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-light);
-        margin-bottom: 3px;
-    }
-
-    .field-value {
-        font-size: 13px;
-        font-weight: 400;
-        color: var(--text-main);
-        word-break: break-word;
-    }
-
-    .field-value.empty {
-        color: var(--text-light);
-        font-style: italic;
-        font-size: 12px;
-    }
-
-    .field-box.wide {
-        grid-column: span 2;
-    }
-
-    /* address row */
-    .cliente-address {
-        margin-top: 8px;
-        background: var(--sage-soft);
-        border: 1px solid var(--sage-mid);
-        border-radius: var(--radius);
-        padding: 8px 12px;
-        font-size: 12px;
-        color: var(--text-mid);
-        line-height: 1.6;
-    }
-
-    .cliente-address .addr-label {
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #6a8a66;
-        margin-bottom: 3px;
-    }
-
-    /* newsletter pill */
-    .pill {
-        display: inline-block;
-        font-size: 11px;
-        font-weight: 500;
-        border-radius: 10px;
-        padding: 2px 8px;
-    }
-
-    .pill-yes {
-        background: var(--sage-soft);
-        color: #4a7a44;
-        border: 1px solid var(--sage-mid);
-    }
-
-    .pill-no {
-        background: var(--rose-soft);
-        color: #a05040;
-        border: 1px solid var(--rose-mid);
-    }
-
-    /* ── PRODUTO CARD ── */
-    .produtos-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .produto-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-card);
-        border-radius: var(--radius);
-        padding: 18px 20px;
-        transition: border-color 0.15s, box-shadow 0.15s;
-    }
-
-    .produto-card:hover {
-        border-color: var(--accent);
-        box-shadow: 0 2px 12px rgba(181,149,106,0.08);
-    }
-
-    .produto-top {
-        display: flex;
-        gap: 16px;
-        align-items: flex-start;
-        margin-bottom: 14px;
-    }
-
-    .produto-fotos {
-        display: flex;
-        gap: 6px;
-        flex-shrink: 0;
-    }
-
-    .foto-thumb {
-        width: 72px; height: 72px;
-        border-radius: var(--radius);
-        border: 1px solid var(--border-card);
-        object-fit: cover;
-        background: var(--accent-pale);
-        display: flex; align-items: center; justify-content: center;
-        overflow: hidden;
-    }
-
-    .foto-thumb img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    .foto-thumb.placeholder-foto {
-        font-size: 22px;
-        color: var(--border);
-    }
-
-    .foto-thumb.principal {
-        border-color: var(--accent);
-        outline: 2px solid var(--accent-soft);
-    }
-
-    .produto-info {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .produto-titulo {
-        font-family: var(--font-title);
-        font-size: 18px;
-        font-weight: 500;
-        color: var(--text-main);
-        margin-bottom: 4px;
-        line-height: 1.3;
-    }
-
-    .produto-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-bottom: 10px;
-    }
-
-    .tag {
-        font-size: 11px;
-        font-weight: 400;
-        padding: 2px 8px;
-        border-radius: 10px;
-        border: 1px solid var(--border-card);
-        background: var(--accent-pale);
-        color: var(--text-mid);
-    }
-
-    .produto-preco {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-    }
-
-    .preco-value {
-        font-family: var(--font-title);
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--text-main);
-    }
-
-    .preco-promo {
-        font-size: 12px;
-        color: var(--text-light);
-        text-decoration: line-through;
-    }
-
-    .preco-label {
-        font-size: 11px;
-        color: var(--accent);
-        font-weight: 500;
-    }
-
-    .produto-fields {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 8px;
-    }
-
-    .produto-descricao {
-        margin-top: 8px;
-        padding: 10px 12px;
-        background: var(--accent-pale);
-        border: 1px solid var(--accent-soft);
-        border-radius: var(--radius);
-        font-size: 13px;
-        color: var(--text-mid);
-        line-height: 1.6;
-        font-weight: 300;
-    }
-
-    .produto-tags-row {
-        margin-top: 8px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-
-    /* ── STATES ── */
-    .view { display: none; }
-    .view.active { display: block; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #faf8f0;
+    --bg-card:     #ffffff;
+    --bg-sidebar:  #fffff8;
+    --accent:      #b5956a;
+    --accent-soft: #f0e8d8;
+    --accent-pale: #faf4ec;
+    --text-main:   #2e2a22;
+    --text-mid:    #6b6355;
+    --text-light:  #a89d8e;
+    --border:      #e2dace;
+    --border-card: #ede8de;
+    --rose-soft:   #f5ece8;
+    --rose-mid:    #e8cfc6;
+    --sage-soft:   #eaf0e8;
+    --sage-mid:    #c8d9c4;
+    --lavender:    #ece8f4;
+    --lavender-mid:#c8c0dc;
+    --radius:      4px;
+    --font-title:  'Cormorant Garamond', Georgia, serif;
+    --font-body:   'DM Sans', system-ui, sans-serif;
+    --sidebar-w:   220px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-main);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    height: 62px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    flex-shrink: 0;
+    gap: 12px;
+  }
+
+  .header-monogram {
+    width: 34px; height: 34px;
+    border-radius: var(--radius);
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-title);
+    font-size: 16px; font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-family: var(--font-title);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: 0.01em;
+  }
+
+  .header-title span {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .header-sub {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 4px;
+    align-self: center;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--bg-sidebar);
+    border-right: 4px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    padding: 0 20px 12px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-mid);
+    user-select: none;
+  }
+
+  .nav-item:hover {
+    background: var(--accent-pale);
+    color: var(--text-main);
+  }
+
+  .nav-item.active {
+    background: var(--accent-soft);
+    border-left-color: var(--accent);
+    color: var(--text-main);
+    font-weight: 500;
+  }
+
+  .nav-icon {
+    width: 28px; height: 28px;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .nav-item.active .nav-icon,
+  .nav-item:hover .nav-icon {
+    background: var(--bg-card);
+  }
+
+  .nav-count {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 10px;
+    padding: 1px 7px;
+  }
+
+  .sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 20px;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 16px 20px 0;
+    font-size: 11px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 28px 32px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  main::-webkit-scrollbar { width: 6px; }
+  main::-webkit-scrollbar-track { background: transparent; }
+  main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-card);
+  }
+
+  .section-title {
+    font-family: var(--font-title);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: 0.01em;
+  }
+
+  .section-count {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── EMPTY / LOADING ── */
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 320px;
+    color: var(--text-light);
+    gap: 12px;
+    text-align: center;
+  }
+
+  .placeholder-icon {
+    font-size: 40px;
+    opacity: 0.4;
+  }
+
+  .placeholder p {
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  /* ── CLIENTE CARD ── */
+  .clientes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cliente-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .cliente-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(181,149,106,0.08);
+  }
+
+  .cliente-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .cliente-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--lavender);
+    border: 1px solid var(--lavender-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-title);
+    font-size: 14px; font-weight: 600;
+    color: #5a5080;
+    flex-shrink: 0;
+  }
+
+  .cliente-name {
+    font-family: var(--font-title);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  .cliente-city {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-light);
+    margin-top: 1px;
+  }
+
+  .cliente-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+  }
+
+  .field-box {
+    background: var(--bg);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius);
+    padding: 7px 10px;
+  }
+
+  .field-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 3px;
+  }
+
+  .field-value {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-main);
+    word-break: break-word;
+  }
+
+  .field-value.empty {
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  .field-box.wide {
+    grid-column: span 2;
+  }
+
+  /* address row */
+  .cliente-address {
+    margin-top: 8px;
+    background: var(--sage-soft);
+    border: 1px solid var(--sage-mid);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .cliente-address .addr-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6a8a66;
+    margin-bottom: 3px;
+  }
+
+  /* newsletter pill */
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 2px 8px;
+  }
+
+  .pill-yes {
+    background: var(--sage-soft);
+    color: #4a7a44;
+    border: 1px solid var(--sage-mid);
+  }
+
+  .pill-no {
+    background: var(--rose-soft);
+    color: #a05040;
+    border: 1px solid var(--rose-mid);
+  }
+
+  /* ── PRODUTO CARD ── */
+  .produtos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .produto-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .produto-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(181,149,106,0.08);
+  }
+
+  .produto-top {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .produto-fotos {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .foto-thumb {
+    width: 72px; height: 72px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-card);
+    object-fit: cover;
+    background: var(--accent-pale);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .foto-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .foto-thumb.placeholder-foto {
+    font-size: 22px;
+    color: var(--border);
+  }
+
+  .foto-thumb.principal {
+    border-color: var(--accent);
+    outline: 2px solid var(--accent-soft);
+  }
+
+  .produto-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .produto-titulo {
+    font-family: var(--font-title);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .produto-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 400;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border-card);
+    background: var(--accent-pale);
+    color: var(--text-mid);
+  }
+
+  .produto-preco {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .preco-value {
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .preco-promo {
+    font-size: 12px;
+    color: var(--text-light);
+    text-decoration: line-through;
+  }
+
+  .preco-label {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .produto-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+
+  .produto-descricao {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: var(--accent-pale);
+    border: 1px solid var(--accent-soft);
+    border-radius: var(--radius);
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .produto-tags-row {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  /* ── STATES ── */
+  .view { display: none; }
+  .view.active { display: block; }
 </style>
 </head>
 <body>
 
 <header>
-    <div class="header-monogram">PC</div>
-    <div class="header-title">PrettyCraft <span>—</span></div>
-    <div class="header-sub">Encadernação &amp; Artesanato</div>
+  <div class="header-monogram">PC</div>
+  <div class="header-title">PrettyCraft <span>—</span></div>
+  <div class="header-sub">Encadernação &amp; Artesanato</div>
 </header>
 
 <div class="layout">
 
-    <aside>
-        <div class="sidebar-label">Menu</div>
+  <aside>
+    <div class="sidebar-label">Menu</div>
 
-        <div class="nav-item active" data-view="clientes" onclick="switchView('clientes')">
-            <div class="nav-icon">👤</div>
-            Clientes
-            <span class="nav-count" id="count-clientes">—</span>
+    <div class="nav-item active" data-view="clientes" onclick="switchView('clientes')">
+      Clientes
+      <span class="nav-count" id="count-clientes">—</span>
+    </div>
+
+    <div class="nav-item" data-view="produtos" onclick="switchView('produtos')">
+      Produtos
+      <span class="nav-count" id="count-produtos">—</span>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-footer">
+      Dados carregados do<br>Supabase em tempo real.
+    </div>
+  </aside>
+
+  <main>
+
+    <div id="view-clientes" class="view active">
+      <div class="section-header">
+        <h1 class="section-title">Clientes</h1>
+        <span class="section-count" id="label-clientes">carregando…</span>
+      </div>
+      <div class="clientes-grid" id="clientes-grid">
+        <div class="placeholder">
+          <div class="placeholder-icon">👤</div>
+          <p>Carregando clientes…</p>
         </div>
+      </div>
+    </div>
 
-        <div class="nav-item" data-view="produtos" onclick="switchView('produtos')">
-            <div class="nav-icon">🎁</div>
-            Produtos
-            <span class="nav-count" id="count-produtos">—</span>
+    <div id="view-produtos" class="view">
+      <div class="section-header">
+        <h1 class="section-title">Produtos</h1>
+        <span class="section-count" id="label-produtos">carregando…</span>
+      </div>
+      <div class="produtos-grid" id="produtos-grid">
+        <div class="placeholder">
+          <div class="placeholder-icon">🎁</div>
+          <p>Carregando produtos…</p>
         </div>
+      </div>
+    </div>
 
-        <div class="sidebar-divider"></div>
-
-        <div class="sidebar-footer">
-            Dados carregados do<br>Supabase em tempo real.
-        </div>
-    </aside>
-
-    <main>
-
-        <div id="view-clientes" class="view active">
-            <div class="section-header">
-                <h1 class="section-title">Clientes</h1>
-                <span class="section-count" id="label-clientes">carregando…</span>
-            </div>
-            <div class="clientes-grid" id="clientes-grid">
-                <div class="placeholder">
-                    <div class="placeholder-icon">👤</div>
-                    <p>Carregando clientes…</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="view-produtos" class="view">
-            <div class="section-header">
-                <h1 class="section-title">Produtos</h1>
-                <span class="section-count" id="label-produtos">carregando…</span>
-            </div>
-            <div class="produtos-grid" id="produtos-grid">
-                <div class="placeholder">
-                    <div class="placeholder-icon">🎁</div>
-                    <p>Carregando produtos…</p>
-                </div>
-            </div>
-        </div>
-
-    </main>
+  </main>
 </div>
 
 <script>
 // ── CONFIG SUPABASE ──────────────────────────────────────────
 // Substitua pelos seus valores:
-const SUPABASE_URL = 'https://ohkhgawnhnymcxbwyocz.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_wQy_jh84INj1HQX3HpWvXw_0sJ5NjMK';
+const SUPABASE_URL = 'https://SEU-PROJETO.supabase.co';
+const SUPABASE_KEY = 'SUA-ANON-KEY';
 // ────────────────────────────────────────────────────────────
 
 async function supabaseFetch(table, params = '') {
-    const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/${table}?${params}`,
-        { headers: {
-                'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${SUPABASE_KEY}`,
-                'Range-Unit': 'items',
-                'Prefer': 'count=exact',
-        }}
-    );
-    const total = res.headers.get('Content-Range')?.split('/')[1] ?? '?';
-    const data    = await res.json();
-    return { data, total };
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/${table}?${params}`,
+    { headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Range-Unit': 'items',
+        'Prefer': 'count=exact',
+    }}
+  );
+  const total = res.headers.get('Content-Range')?.split('/')[1] ?? '?';
+  const data  = await res.json();
+  return { data, total };
 }
 
 // ── VIEW SWITCH ──────────────────────────────────────────────
 function switchView(name) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.getElementById(`view-${name}`).classList.add('active');
-    document.querySelector(`[data-view="${name}"]`).classList.add('active');
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(`view-${name}`).classList.add('active');
+  document.querySelector(`[data-view="${name}"]`).classList.add('active');
 }
 
 // ── HELPERS ─────────────────────────────────────────────────
 function initials(name) {
-    if (!name) return '?';
-    return name.trim().split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+  if (!name) return '?';
+  return name.trim().split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join('');
 }
 
 function field(label, value, opts = {}) {
-    const v = value ? String(value).trim() : '';
-    const display = v
-        ? `<div class="field-value">${v}</div>`
-        : `<div class="field-value empty">—</div>`;
-    const wide = opts.wide ? ' wide' : '';
-    return `<div class="field-box${wide}"><div class="field-label">${label}</div>${display}</div>`;
+  const v = value ? String(value).trim() : '';
+  const display = v
+    ? `<div class="field-value">${v}</div>`
+    : `<div class="field-value empty">—</div>`;
+  const wide = opts.wide ? ' wide' : '';
+  return `<div class="field-box${wide}"><div class="field-label">${label}</div>${display}</div>`;
 }
 
 function fmtBRL(v) {
-    if (!v) return null;
-    const n = parseFloat(String(v).replace(',', '.'));
-    if (isNaN(n)) return null;
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(n);
+  if (!v) return null;
+  const n = parseFloat(String(v).replace(',', '.'));
+  if (isNaN(n)) return null;
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(n);
 }
 
 function fmtEndereco(c) {
-    const parts = [
-        c.endereco && c.numero ? `${c.endereco}, ${c.numero}` : c.endereco,
-        c.complemento,
-        c.bairro,
-        c.cidade && c.estado ? `${c.cidade} — ${c.estado}` : c.cidade,
-        c.cep
-    ].filter(Boolean);
-    return parts.join('<br>');
+  const parts = [
+    c.endereco && c.numero ? `${c.endereco}, ${c.numero}` : c.endereco,
+    c.complemento,
+    c.bairro,
+    c.cidade && c.estado ? `${c.cidade} — ${c.estado}` : c.cidade,
+    c.cep
+  ].filter(Boolean);
+  return parts.join('<br>');
 }
 
 // ── RENDER CLIENTES ──────────────────────────────────────────
 function renderCliente(c) {
-    const ini = initials(c.nome_completo);
-    const addr = fmtEndereco(c);
-    const nl = c.newsletter === true
-        ? '<span class="pill pill-yes">Aceita newsletter</span>'
-        : c.newsletter === false
-        ? '<span class="pill pill-no">Não aceita newsletter</span>'
-        : '';
+  const ini = initials(c.nome_completo);
+  const addr = fmtEndereco(c);
+  const nl = c.newsletter === true
+    ? '<span class="pill pill-yes">Aceita newsletter</span>'
+    : c.newsletter === false
+    ? '<span class="pill pill-no">Não aceita newsletter</span>'
+    : '';
 
-    return `
-    <div class="cliente-card">
-        <div class="cliente-header">
-            <div class="cliente-avatar">${ini}</div>
-            <div>
-                <div class="cliente-name">${c.nome_completo ?? '—'}</div>
-                <div class="cliente-city">${c.cidade ?? ''}${c.estado ? ` · ${c.estado}` : ''}</div>
-            </div>
-            ${nl}
-        </div>
-        <div class="cliente-fields">
-            ${field('E-mail', c.email, { wide: true })}
-            ${field('Celular', c.celular)}
-            ${field('Telefone', c.telefone_res || c.telefone_com)}
-            ${field('Profissão', c.profissao)}
-            ${field('Empresa', c.empresa)}
-            ${field('Nascimento', c.nascimento)}
-            ${c.anotacoes ? field('Anotações', c.anotacoes, { wide: true }) : ''}
-        </div>
-        ${addr ? `<div class="cliente-address"><div class="addr-label">Endereço</div>${addr}</div>` : ''}
-    </div>`;
+  return `
+  <div class="cliente-card">
+    <div class="cliente-header">
+      <div class="cliente-avatar">${ini}</div>
+      <div>
+        <div class="cliente-name">${c.nome_completo ?? '—'}</div>
+        <div class="cliente-city">${c.cidade ?? ''}${c.estado ? ` · ${c.estado}` : ''}</div>
+      </div>
+      ${nl}
+    </div>
+    <div class="cliente-fields">
+      ${field('E-mail', c.email, { wide: true })}
+      ${field('Celular', c.celular)}
+      ${field('Telefone', c.telefone_res || c.telefone_com)}
+      ${field('Profissão', c.profissao)}
+      ${field('Empresa', c.empresa)}
+      ${field('Nascimento', c.nascimento)}
+      ${c.anotacoes ? field('Anotações', c.anotacoes, { wide: true }) : ''}
+    </div>
+    ${addr ? `<div class="cliente-address"><div class="addr-label">Endereço</div>${addr}</div>` : ''}
+  </div>`;
 }
 
 // ── RENDER PRODUTOS ──────────────────────────────────────────
 function renderFotos(p) {
-    const slots = [1, 2, 3, 4, 5];
-    return slots.map(i => {
-        const url = p[`url_foto_${i}`];
-        const principal = i === 1 ? ' principal' : '';
-        if (url) {
-            return `<div class="foto-thumb${principal}"><img src="${url}" alt="Foto ${i}" loading="lazy"></div>`;
-        }
-        return `<div class="foto-thumb placeholder-foto${principal}">·</div>`;
-    }).join('');
+  const slots = [1, 2, 3, 4, 5];
+  return slots.map(i => {
+    const url = p[`url_foto_${i}`];
+    const principal = i === 1 ? ' principal' : '';
+    if (url) {
+      return `<div class="foto-thumb${principal}"><img src="${url}" alt="Foto ${i}" loading="lazy"></div>`;
+    }
+    return `<div class="foto-thumb placeholder-foto${principal}">·</div>`;
+  }).join('');
 }
 
 function renderTags(tags) {
-    if (!tags) return '';
-    return tags.split(',').map(t => t.trim()).filter(Boolean)
-        .map(t => `<span class="tag">${t}</span>`).join('');
+  if (!tags) return '';
+  return tags.split(',').map(t => t.trim()).filter(Boolean)
+    .map(t => `<span class="tag">${t}</span>`).join('');
 }
 
 function renderProduto(p) {
-    const preco = fmtBRL(p.preco_unitario);
-    const promo = fmtBRL(p.preco_promocional);
-    const precoHtml = preco
-        ? `<div class="produto-preco">
-                ${promo
-                    ? `<span class="preco-value">${promo}</span>
-                         <span class="preco-promo">${preco}</span>
-                         <span class="preco-label">promoção</span>`
-                    : `<span class="preco-value">${preco}</span>`}
-             </div>`
-        : '';
+  const preco = fmtBRL(p.preco_unitario);
+  const promo = fmtBRL(p.preco_promocional);
+  const precoHtml = preco
+    ? `<div class="produto-preco">
+        ${promo
+          ? `<span class="preco-value">${promo}</span>
+             <span class="preco-promo">${preco}</span>
+             <span class="preco-label">promoção</span>`
+          : `<span class="preco-value">${preco}</span>`}
+       </div>`
+    : '';
 
-    const tagsHtml = renderTags(p.tags);
-    const dims = [p.largura_cm, p.altura_cm, p.comprimento_cm].filter(Boolean);
-    const dimsStr = dims.length === 3 ? `${dims[0]} × ${dims[1]} × ${dims[2]} cm` : '';
+  const tagsHtml = renderTags(p.tags);
+  const dims = [p.largura_cm, p.altura_cm, p.comprimento_cm].filter(Boolean);
+  const dimsStr = dims.length === 3 ? `${dims[0]} × ${dims[1]} × ${dims[2]} cm` : '';
 
-    return `
-    <div class="produto-card">
-        <div class="produto-top">
-            <div class="produto-fotos">${renderFotos(p)}</div>
-            <div class="produto-info">
-                <div class="produto-titulo">${p.titulo ?? '—'}</div>
-                <div class="produto-meta">
-                    ${p.categoria ? `<span class="tag">${p.categoria}</span>` : ''}
-                    ${p.subcategoria ? `<span class="tag">${p.subcategoria}</span>` : ''}
-                    ${p.tipo ? `<span class="tag">${p.tipo}</span>` : ''}
-                </div>
-                ${precoHtml}
-            </div>
+  return `
+  <div class="produto-card">
+    <div class="produto-top">
+      <div class="produto-fotos">${renderFotos(p)}</div>
+      <div class="produto-info">
+        <div class="produto-titulo">${p.titulo ?? '—'}</div>
+        <div class="produto-meta">
+          ${p.categoria ? `<span class="tag">${p.categoria}</span>` : ''}
+          ${p.subcategoria ? `<span class="tag">${p.subcategoria}</span>` : ''}
+          ${p.tipo ? `<span class="tag">${p.tipo}</span>` : ''}
         </div>
-        <div class="produto-fields">
-            ${field('Estoque', p.estoque)}
-            ${field('Sob encomenda', p.sob_encomenda === true ? 'Sim' : p.sob_encomenda === false ? 'Não' : null)}
-            ${field('Prazo produção', p.prazo_producao ? `${p.prazo_producao} dias úteis` : null)}
-            ${field('Qtd mínima', p.qtd_minima)}
-            ${field('Peso', p.peso_g ? `${p.peso_g} g` : null)}
-            ${field('Dimensões', dimsStr)}
-            ${field('Frete', p.tipo_frete)}
-            ${field('Produto digital', p.digital === true ? 'Sim' : p.digital === false ? 'Não' : null)}
-        </div>
-        ${p.descricao ? `<div class="produto-descricao">${p.descricao}</div>` : ''}
-        ${tagsHtml ? `<div class="produto-tags-row">${tagsHtml}</div>` : ''}
-    </div>`;
+        ${precoHtml}
+      </div>
+    </div>
+    <div class="produto-fields">
+      ${field('Estoque', p.estoque)}
+      ${field('Sob encomenda', p.sob_encomenda === true ? 'Sim' : p.sob_encomenda === false ? 'Não' : null)}
+      ${field('Prazo produção', p.prazo_producao ? `${p.prazo_producao} dias úteis` : null)}
+      ${field('Qtd mínima', p.qtd_minima)}
+      ${field('Peso', p.peso_g ? `${p.peso_g} g` : null)}
+      ${field('Dimensões', dimsStr)}
+      ${field('Frete', p.tipo_frete)}
+      ${field('Produto digital', p.digital === true ? 'Sim' : p.digital === false ? 'Não' : null)}
+    </div>
+    ${p.descricao ? `<div class="produto-descricao">${p.descricao}</div>` : ''}
+    ${tagsHtml ? `<div class="produto-tags-row">${tagsHtml}</div>` : ''}
+  </div>`;
 }
 
 // ── LOAD ─────────────────────────────────────────────────────
 async function loadClientes() {
-    const grid    = document.getElementById('clientes-grid');
-    const label = document.getElementById('label-clientes');
-    const count = document.getElementById('count-clientes');
-    try {
-        const { data, total } = await supabaseFetch(
-            'clientes_elo7',
-            'select=*&order=nome_completo.asc&limit=500'
-        );
-        label.textContent = `${total} clientes`;
-        count.textContent = total;
-        grid.innerHTML = data.map(renderCliente).join('');
-    } catch (e) {
-        grid.innerHTML = `<div class="placeholder"><div class="placeholder-icon">⚠️</div><p>Erro ao carregar: ${e.message}</p></div>`;
-    }
+  const grid  = document.getElementById('clientes-grid');
+  const label = document.getElementById('label-clientes');
+  const count = document.getElementById('count-clientes');
+  try {
+    const { data, total } = await supabaseFetch(
+      'clientes',
+      'select=*&order=nome_completo.asc&limit=500'
+    );
+    label.textContent = `${total} clientes`;
+    count.textContent = total;
+    grid.innerHTML = data.map(renderCliente).join('');
+  } catch (e) {
+    grid.innerHTML = `<div class="placeholder"><div class="placeholder-icon">⚠️</div><p>Erro ao carregar: ${e.message}</p></div>`;
+  }
 }
 
 async function loadProdutos() {
-    const grid    = document.getElementById('produtos-grid');
-    const label = document.getElementById('label-produtos');
-    const count = document.getElementById('count-produtos');
-    try {
-        const { data, total } = await supabaseFetch(
-            'produtos_elo7',
-            'select=*&order=titulo.asc&limit=500'
-        );
-        label.textContent = `${total} produtos`;
-        count.textContent = total;
-        grid.innerHTML = data.map(renderProduto).join('');
-    } catch (e) {
-        grid.innerHTML = `<div class="placeholder"><div class="placeholder-icon">⚠️</div><p>Erro ao carregar: ${e.message}</p></div>`;
-    }
+  const grid  = document.getElementById('produtos-grid');
+  const label = document.getElementById('label-produtos');
+  const count = document.getElementById('count-produtos');
+  try {
+    const { data, total } = await supabaseFetch(
+      'produtos',
+      'select=*&order=titulo.asc&limit=500'
+    );
+    label.textContent = `${total} produtos`;
+    count.textContent = total;
+    grid.innerHTML = data.map(renderProduto).join('');
+  } catch (e) {
+    grid.innerHTML = `<div class="placeholder"><div class="placeholder-icon">⚠️</div><p>Erro ao carregar: ${e.message}</p></div>`;
+  }
 }
 
 // ── INIT ─────────────────────────────────────────────────────
