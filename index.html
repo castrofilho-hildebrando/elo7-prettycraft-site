@@ -751,7 +751,7 @@ async function loadClientes() {
     const count = document.getElementById('count-clientes');
     try {
         const { data, total } = await supabaseFetch(
-            'clientes',
+            'clientes_elo7',
             'select=*&order=nome_completo.asc&limit=500'
         );
         label.textContent = `${total} clientes`;
@@ -768,7 +768,7 @@ async function loadProdutos() {
     const count = document.getElementById('count-produtos');
     try {
         const { data, total } = await supabaseFetch(
-            'produtos',
+            'produtos_elo7',
             'select=*&order=titulo.asc&limit=500'
         );
         label.textContent = `${total} produtos`;
